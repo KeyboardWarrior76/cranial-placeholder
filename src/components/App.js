@@ -2,6 +2,7 @@ import blurredImageUrl from '../assets/images/backgrundBlurredUrl';
 import fullImageUrl from '../assets/images/backgrundFullUrl'; 
 import ProgressiveImage from 'react-progressive-image';
 import styled from '@emotion/styled';
+import Logo from '../assets/images/full-text-logo-light.svg';
 
 function App() {
   return (
@@ -10,13 +11,10 @@ function App() {
       placeholder={blurredImageUrl}>
       {src => (
         <ImageBackground backgroundUrl={src}>
-          <WhiteBorder>
-            <TitleContainer>
-              <Title>CRANIAL</Title>
-              <Title>LEARNING</Title>
-              <Tagline>coming soon</Tagline>
-            </TitleContainer>
-          </WhiteBorder>
+          <TitleContainer>
+            <TextLogo src={Logo} alt='Cranial Learning Text Logo' />
+            <Tagline>coming soon</Tagline>
+          </TitleContainer>
         </ImageBackground>
       )}
     </AppContainer>
@@ -40,42 +38,34 @@ const ImageBackground = styled.div`
   background-size: cover;
 `
 
-const WhiteBorder = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 115px);
-  width: calc(100vw - 115px);
-  border: 1px solid white;
-  
-  @media(max-width: 1100px) {
-    border-left: transparent;
-    border-right: transparent;
-  }
-`
-
 const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 7px 30px;
   border-left: 12px solid white;
-  padding: 5px 0 12px 30px;
 
   @media(max-width: 600px) {
     font-size: 8px;
   }
 `
 
-const Title = styled.h1`
-  color: white;
-  font-family: Canno;
-  font-size: 3em;
-  letter-spacing: 0.3em;
-  word-spacing: 1.5em;
+const TextLogo = styled.img`
+  width: 20vw;
+  min-width: 225px;
 `
 
+
 const Tagline = styled.p`
-  color: white;
+  align-self: flex-end;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  
   font-family: Canno;
   font-size: 1em;
   letter-spacing: 0.5em;
+  
+  color: white;
+  background-color: #333333;
 `
 
 export default App;
