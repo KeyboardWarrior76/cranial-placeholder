@@ -1,71 +1,107 @@
-import blurredImageUrl from '../assets/images/backgrundBlurredUrl';
-import fullImageUrl from '../assets/images/backgrundFullUrl'; 
-import ProgressiveImage from 'react-progressive-image';
 import styled from '@emotion/styled';
-import Logo from '../assets/images/full-text-logo-light.svg';
+import Logo from '../assets/images/logo.svg';
 
 function App() {
   return (
-    <AppContainer 
-      src={fullImageUrl}
-      placeholder={blurredImageUrl}>
-      {src => (
-        <ImageBackground backgroundUrl={src}>
-          <TitleContainer>
-            <TextLogo src={Logo} alt='Cranial Learning Text Logo' />
-            <Tagline>coming soon</Tagline>
-          </TitleContainer>
-        </ImageBackground>
-      )}
+    <AppContainer url={Logo}>
+      <TitleContainer>
+        <LogoCenter>
+          <SVGLogo src={Logo} alt='Cranial Learning Text Logo' />
+          <LogoText>CRANIAL<br />LEARNING</LogoText>
+        </LogoCenter>
+        <LearnMoreText>
+          Want to learn more about this project? Send A message to
+          <CranialEmail href="mailto: admin@cranial.dev" >
+            {" admin@cranial.dev"}
+          </CranialEmail>
+        </LearnMoreText>
+      </TitleContainer>
     </AppContainer>
   );
 }
 
-const AppContainer = styled(ProgressiveImage)``;
-
-const ImageBackground = styled.div`
+const AppContainer = styled.div`
+  position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: auto;
-
   height: 100vh;
-  width: 100vw;
 
-  background-image: url(${props => props.backgroundUrl});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  &:before {
+    content: '""';
+    position: absolute;
+    height: 1200px;
+    width: 1200px;
+    background-image: url(${props => props.url});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+    filter: grayscale(100%) brightness(6%);
+    -webkit-filter: grayscale(100%) brightness(6%);
+    -moz-filter: grayscale(100%) brightness(6%);
+
+    @media(max-width:650px) {
+      height: 800px;
+      width: 800px;
+    }
+  }
 `
 
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 0 7px 30px;
-  border-left: 12px solid white;
+  align-items: center;
+  z-index: 1;
 
   @media(max-width: 600px) {
     font-size: 8px;
   }
 `
 
-const TextLogo = styled.img`
-  width: 20vw;
-  min-width: 225px;
+const LogoCenter = styled.div`
+  display: flex;
 `
 
+const SVGLogo = styled.img`
+  width: 8rem;
 
-const Tagline = styled.p`
-  align-self: flex-end;
-  padding-bottom: 3px;
-  padding-left: 5px;
-  
-  font-family: Canno;
-  font-size: 1em;
-  letter-spacing: 0.5em;
-  
+  @media(max-width:650px) {
+    width: 4rem;
+  }
+`
+
+const LogoText = styled.h1`
+  align-self: center;
   color: white;
-  background-color: #333333;
+  font-family: BraveEightyOne;
+  font-size: 1.75rem;
+  font-weight: normal;
+  letter-spacing: 0;
+  padding-left: 2rem;
+
+
+  @media(max-width:650px) {
+    font-size: 1rem;
+    padding-left: 1rem;
+  }
+`
+
+const LearnMoreText = styled.p`
+  color: white;
+  font-size: 0.8rem;
+  padding-top: 4rem;
+
+  @media(max-width:650px) {
+    font-size: 0.5rem;
+  }
+`
+
+const CranialEmail = styled.a`
+  color: #00A5BC;
+  text-decoration: none;
+  font-weight: bold;
 `
 
 export default App;

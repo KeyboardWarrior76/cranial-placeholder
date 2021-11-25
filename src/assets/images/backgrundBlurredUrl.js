@@ -1,1 +1,0 @@
-export default 'https://res.cloudinary.com/da6i1bvlb/image/upload/e_blur:100,q_24/v1630460917/Cranial%20Placeholder/adrien-olichon-RCAhiGJsUUE-unsplash.jpg';
